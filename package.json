@@ -1,7 +1,7 @@
 {
-  "name": "fs-app-template",
+  "name": "academy-organizer",
   "version": "2.0.0",
-  "description": "Some boilerplate code to get you started - get shakin'!",
+  "description": "web2 app / PERN stack organizer of academy and students",
   "main": "index.js",
   "scripts": {
     "build": "webpack",
