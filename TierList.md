@@ -152,7 +152,7 @@ Congrats! You have completed your fourth vertical slice! Make sure to `commit -m
 
 </details>
 
-### Bonus Tier: Finishing Touches
+### Tier 6: Add ons
 
 <details>
 
