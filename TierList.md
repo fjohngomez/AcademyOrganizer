@@ -196,3 +196,9 @@ Congrats! You have completed your fourth vertical slice! Make sure to `commit -m
 - [ ] Implement _back-end_ pagination for campuses (e.g. `/api/campuses?page=1` returns the first ten campuses' data, and `/api/campuses?page=2` returns campuses 11-20)
 
 </details>
+
+### Tier 7: Security
+<details>
+- [ ] Secure API Routes from nonusers and from SQL injections
+
+</details>
