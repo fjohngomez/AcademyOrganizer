@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import { Routes, Route, Navigate } from 'react-router-dom'
-import { Login, Signup } from './components/AuthForm';
+import AuthenForm from './components/AuthForm';
 import Home from './components/Home';
 import {me} from './store'
 
@@ -23,8 +23,8 @@ function SiteRoutes () {
         </Routes>
       ) : (
         <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={<AuthenForm />} />
+          <Route path="/signup" element={<AuthenForm />} />
           <Route path="*" element={<Navigate replace to="/login" />} />
         </Routes>
       )}
