@@ -5,11 +5,8 @@ import { useLocation } from 'react-router-dom'
 import { Box, Typography, TextField, FormControlLabel, Checkbox, Button } from '@mui/material'
 
 const AuthenForm = () => {
-
-
-  const [type, setType] = useState('login')
+  const [type, setType] = useState('')
   const [displayName, setDisplayName] = useState('')
-
 
   let location = useLocation()
   useEffect(()=>{
@@ -32,6 +29,7 @@ const AuthenForm = () => {
     const password = evt.target.password.value
     dispatch(authenticate(username, password, formName))
   }
+
   return(
     <Box sx={{
       mt: 8,
