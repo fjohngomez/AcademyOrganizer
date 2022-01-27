@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import {logout} from '../store'
 import { Box, AppBar, Toolbar, IconButton, Typography, Button } from '@mui/material'
 
@@ -12,6 +12,20 @@ function Navbar () {
     dispatch(logout())
   }
 
+  //Pages
+  const pages = [
+    {
+      displayName: 'Campuses',
+      link: '/campuses'
+    },
+    {
+      displayName: 'Students',
+      link: '/students'
+    }
+  ]
+
+  const navigate = useNavigate()
+
 
   return (
     <Box sx={{ flexGrow: 1}}>
@@ -21,6 +35,28 @@ function Navbar () {
           <IconButton edge="start" color="inherit" aria-label="menu" sx={{ mr: 2}}>
             Menu
           </IconButton>
+        <Box sx={{
+          flexGrow: 1,
+          display: {xs: 'none', md: 'flex'}
+        }}>
+          {pages.map((page,i)=>{
+            const { displayName, link } = page
+            return (
+              <Button
+                key={i}
+                sx={{
+                  my: 2, color: 'white', display:'block'
+                }}
+                onClick={() => navigate(link)}
+              >
+              {displayName}
+              </Button>
+            )
+          })}
+
+        </Box>
+
+
 
           {isLoggedIn ? (
               <>
