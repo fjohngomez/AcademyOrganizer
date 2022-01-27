@@ -4,6 +4,7 @@ import { Routes, Route, Navigate } from 'react-router-dom'
 import AuthenForm from './components/AuthForm';
 import Campuses from './components/Campuses';
 import Home from './components/Home';
+import Students from './components/Students';
 import {me} from './store'
 
 function SiteRoutes () {
@@ -25,6 +26,7 @@ function SiteRoutes () {
       ) : (
         <Routes>
           <Route path="/campuses" element={<Campuses />} />
+          <Route path="/students" element={<Students />} />
           <Route path="/login" element={<AuthenForm />} />
           <Route path="/signup" element={<AuthenForm />} />
           <Route path="*" element={<Navigate replace to="/login" />} />

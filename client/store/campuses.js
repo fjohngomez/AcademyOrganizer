@@ -7,7 +7,6 @@ export const getCampuses = createAsyncThunk(
   async() => {
     try{
       const campuses = await axios.get('/api/campuses')
-      console.log('thunk data', campuses)
       return campuses.data
     } catch(e) { return Promise.reject(e) }
   }
