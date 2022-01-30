@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { getCampuses } from '../store/campuses'
-import { Box, Divider, Typography } from '@mui/material'
+import CampusCard from './CampusCard'
+import { Box, Container, Divider, Grid, Typography } from '@mui/material'
 
 const Campuses = () => {
   const dispatch =  useDispatch()
@@ -10,29 +11,20 @@ const Campuses = () => {
   }, [dispatch])
 
   let campuses = useSelector(state => state.campuses.all)
-  console.log('campuses component', campuses)
+  console.log(campuses)
   return (
-    <>
-    {campuses.map(campus => {
-      return (
-        <Box sx={{
-          height: "50vh",
-          width: "50vw",
-          pt: 3,
-          pb: 3
-        }}>
-          <Typography variant="h5">
-            {campus.name}
-          </Typography>
-          <Divider />
-          <Typography variant="body1">
-            {campus.description}
-          </Typography>
-        </Box>
-      )
-    })}
-
-    </>
+    <Container sx={{ py: 8}} maxWidth='md'>
+      <Grid container spacing={4}>
+        {campuses.map((campus, i)=>{
+          return(
+          <Grid item key={i} xs={12} sm={6} m={4}>
+            {console.log('loaded')}
+            <CampusCard campus={campus} />
+          </Grid>
+          )
+        })}
+      </Grid>
+    </Container>
   )
 }
 

@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import { Routes, Route, Navigate } from 'react-router-dom'
 import AuthenForm from './components/AuthForm';
+import CampusCard from './components/CampusCard';
 import Campuses from './components/Campuses';
 import Home from './components/Home';
 import Students from './components/Students';
@@ -25,6 +26,8 @@ function SiteRoutes () {
         </Routes>
       ) : (
         <Routes>
+          {/* <Route path="/test" element={<CampusCard />} /> */}
+
           <Route path="/campuses" element={<Campuses />} />
           <Route path="/students" element={<Students />} />
           <Route path="/login" element={<AuthenForm />} />
