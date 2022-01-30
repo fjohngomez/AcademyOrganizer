@@ -16,16 +16,24 @@ function Navbar () {
   const pages = [
     {
       displayName: 'Campuses',
-      link: '/campuses'
+      link: '/campuses',
+      ariaLabel: 'navigate-to-campuses'
     },
     {
       displayName: 'Students',
-      link: '/students'
+      link: '/students',
+      ariaLabel: 'navigate-to-students'
     }
   ]
 
   const navigate = useNavigate()
 
+  // button style
+  const NavButtonStyle = {
+    my: 2,
+    color: 'white',
+    display:'block'
+  }
 
   return (
     <Box sx={{ flexGrow: 1}}>
@@ -42,13 +50,12 @@ function Navbar () {
           display: {xs: 'none', md: 'flex'}
         }}>
           {pages.map((page,i)=>{
-            const { displayName, link } = page
+            const { displayName, link,  ariaLabel } = page
             return (
               <Button
                 key={i}
-                sx={{
-                  my: 2, color: 'white', display:'block'
-                }}
+                sx={NavButtonStyle}
+                aria-label={ariaLabel}
                 onClick={() => navigate(link)}
               >
               {displayName}
@@ -65,33 +72,29 @@ function Navbar () {
           }}>
           {isLoggedIn ? (
               <>
-              <Button sx={{
-                my: 2, color: 'white', display:'block',
-              }}
+              <Button sx={NavButtonStyle}
               onClick={()=> navigate('/home')}
+              aria-label='navigate-to-homepage'
               >
                 Home
               </Button>
               <Button
-              onClick={handleClick} sx={{
-                my: 2, color: 'white', display:'block',
-              }}>
+              onClick={handleClick} sx={NavButtonStyle}
+              aria-label='application-logout'>
               Logout
             </Button>
             </>
             ) : (
               <>
-              <Button sx={{
-                my: 2, color: 'white', display:'block',
-              }}
+              <Button sx={NavButtonStyle}
               onClick={()=> navigate('/login')}
+              aria-label='navigate-to-login-page'
               >
                 Login
               </Button>
-              <Button sx={{
-                my: 2, color: 'white', display:'block',
-              }}
+              <Button sx={NavButtonStyle}
               onClick={()=> navigate('/signup')}
+              aria-label='navigate-to-signup-page'
               >
                 Sign Up
               </Button>
