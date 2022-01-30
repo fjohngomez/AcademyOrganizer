@@ -31,7 +31,9 @@ function Navbar () {
     <Box sx={{ flexGrow: 1}}>
       <AppBar position="static">
 
-        <Toolbar variant="dense">
+        <Toolbar variant="dense" sx={{
+
+        }}>
           <IconButton edge="start" color="inherit" aria-label="menu" sx={{ mr: 2}}>
             Menu
           </IconButton>
@@ -53,28 +55,52 @@ function Navbar () {
               </Button>
             )
           })}
+          </Box>
 
-        </Box>
-
-
-
+          <Box sx={{
+            flexGrow: 1,
+            display: {xs: 'none', md: 'flex'},
+            alignSelf: 'flex-end',
+            justifyContent: 'flex-end'
+          }}>
           {isLoggedIn ? (
               <>
-            <Link to="/home">
-            <Typography variant="h6" color="inherit" component="div" sx={{ textDecoration: "none"}}>
-              Home
-            </Typography>
-            </Link>
-            <Button onClick={handleClick} sx={{color: "white"}}>
+              <Button sx={{
+                my: 2, color: 'white', display:'block',
+              }}
+              onClick={()=> navigate('/home')}
+              >
+                Home
+              </Button>
+              <Button
+              onClick={handleClick} sx={{
+                my: 2, color: 'white', display:'block',
+              }}>
               Logout
             </Button>
             </>
             ) : (
               <>
-              <Link to="/login">Login</Link>
-              <Link to="/signup">Sign Up</Link>
+              <Button sx={{
+                my: 2, color: 'white', display:'block',
+              }}
+              onClick={()=> navigate('/login')}
+              >
+                Login
+              </Button>
+              <Button sx={{
+                my: 2, color: 'white', display:'block',
+              }}
+              onClick={()=> navigate('/signup')}
+              >
+                Sign Up
+              </Button>
               </>
           )}
+        </Box>
+
+
+
 
 
         </Toolbar>
