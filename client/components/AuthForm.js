@@ -1,71 +1,91 @@
-import React from 'react'
-import {connect} from 'react-redux'
+import React, { useState, useEffect } from 'react'
+import {useDispatch, useSelector} from 'react-redux'
 import {authenticate} from '../store'
+import { useLocation } from 'react-router-dom'
+import { Box, Typography, TextField, FormControlLabel, Checkbox, Button } from '@mui/material'
 
-/**
- * COMPONENT
- */
-const AuthForm = props => {
-  const {name, displayName, handleSubmit, error} = props
+const AuthenForm = () => {
+  const [type, setType] = useState('')
+  const [displayName, setDisplayName] = useState('')
 
-  return (
-    <div>
-      <form onSubmit={handleSubmit} name={name}>
-        <div>
-          <label htmlFor="username">
-            <small>Username</small>
-          </label>
-          <input name="username" type="text" />
-        </div>
-        <div>
-          <label htmlFor="password">
-            <small>Password</small>
-          </label>
-          <input name="password" type="password" />
-        </div>
-        <div>
-          <button type="submit">{displayName}</button>
-        </div>
-        {error && error.response && <div> {error.response.data} </div>}
-      </form>
-    </div>
+  let location = useLocation()
+  useEffect(()=>{
+    if(location.pathname === "/signup"){
+      setType("signup")
+      setDisplayName("Sign Up")
+    } else {
+      setType("login")
+      setDisplayName("Login")
+    }
+  })
+
+  let error = useSelector(state=> state.auth.error)
+
+  const dispatch = useDispatch();
+  const handleSubmit = (evt) => {
+    evt.preventDefault()
+    const formName = type
+    const username = evt.target.username.value
+    const password = evt.target.password.value
+    dispatch(authenticate(username, password, formName))
+  }
+
+  return(
+    <Box sx={{
+      mt: 8,
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center'
+    }}>
+      <Typography component="h1" variant="h5">
+        {displayName}
+      </Typography>
+      <Box component="form" onSubmit={handleSubmit} noValidate sx={{
+        mt:1
+      }}>
+        <TextField
+          margin="normal"
+          required
+          fullWidth
+          id="username"
+          label="username"
+          name="username"
+          autoFocus
+          />
+
+        <TextField
+          margin="normal"
+          required
+          fullWidth
+          name="password"
+          label="password"
+          type="password"
+          id="password"
+          autoComplete="current-password"
+        />
+
+        {/* remember me button not active in working */}
+        <FormControlLabel
+          control={<Checkbox value="remember" color="primary" />}
+          label="Remember me"
+        />
+
+        <Button
+          type="submit"
+          fullWidth
+          variant="contained"
+          sx={{ mt: 3, mb: 2}}
+        >
+          {displayName}
+        </Button>
+
+
+        {error && error.response &&
+        <Typography>{error.response.data}</Typography>}
+
+      </Box>
+    </Box>
   )
 }
 
-/**
- * CONTAINER
- *   Note that we have two different sets of 'mapStateToProps' functions -
- *   one for Login, and one for Signup. However, they share the same 'mapDispatchToProps'
- *   function, and share the same Component. This is a good example of how we
- *   can stay DRY with interfaces that are very similar to each other!
- */
-const mapLogin = state => {
-  return {
-    name: 'login',
-    displayName: 'Login',
-    error: state.auth.error
-  }
-}
-
-const mapSignup = state => {
-  return {
-    name: 'signup',
-    displayName: 'Sign Up',
-    error: state.auth.error
-  }
-}
-
-const mapDispatch = dispatch => {
-  return {
-    handleSubmit(evt) {
-      evt.preventDefault()
-      const formName = evt.target.name
-      const username = evt.target.username.value
-      const password = evt.target.password.value
-      dispatch(authenticate(username, password, formName))
-    }
-  }
-}
-
-export const Login = connect(mapLogin, mapDispatch)(AuthForm)
-export const Signup = connect(mapSignup, mapDispatch)(AuthForm)
+export default AuthenForm

@@ -1,6 +1,6 @@
 'use strict'
 
-const {db, models: {User} } = require('../server/db')
+const {db, models: {User, Student, Campus} } = require('../server/db')
 
 /**
  * seed - this function clears the database, updates tables to
@@ -9,13 +9,54 @@ const {db, models: {User} } = require('../server/db')
 async function seed() {
   await db.sync({ force: true }) // clears db and matches models to tables
   console.log('db synced!')
+  // Students
+  const students = await Promise.all([
+    Student.create({
+      firstName: 'Freddy',
+      lastName: 'G',
+      email: 'me@me.com',
+      gpa: 3.4
+    }),
+    Student.create({
+      firstName: 'Charlie',
+      lastName: 'Ackerman',
+      email: 'CAckerman@me.com',
+      gpa: 3.7
+    }),
+    Student.create({
+      firstName: 'Steph',
+      lastName: 'Chane',
+      email: 'SChane@me.com',
+      gpa: 3.9
+    })
+  ])
+
+  // Campuses
+  const campuses = await Promise.all([
+    Campus.create({
+      name: 'City College',
+      address: '123 convent ave',
+      description: 'a school I went to'
+    }),
+    Campus.create({
+      name: 'York College',
+      address: '123 york ave',
+      description: 'Some School around'
+    }),
+    Campus.create({
+      name: 'Hostos Community College',
+      address: 'grand concourse ave',
+      description: 'a bronx community college'
+    })
+  ])
 
   // Creating Users
   const users = await Promise.all([
     User.create({ username: 'cody', password: '123' }),
     User.create({ username: 'murphy', password: '123' }),
   ])
-
+  students;
+  campuses;
   console.log(`seeded ${users.length} users`)
   console.log(`seeded successfully`)
   return {

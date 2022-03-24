@@ -1,13 +1,13 @@
 import React from 'react'
 
 import Navbar from './components/Navbar'
-import Routes from './Routes'
+import SiteRoutes from './SiteRoutes'
 
 const App = () => {
   return (
     <div>
       <Navbar />
-      <Routes />
+      <SiteRoutes />
     </div>
   )
 }
