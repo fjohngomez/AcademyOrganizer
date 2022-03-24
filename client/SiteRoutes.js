@@ -6,6 +6,7 @@ import CampusCard from './components/CampusCard';
 import Campuses from './components/Campuses';
 import Home from './components/Home';
 import Students from './components/Students';
+import SoleCampus from './components/SoleCampus';
 import {me} from './store'
 
 function SiteRoutes () {
@@ -26,7 +27,7 @@ function SiteRoutes () {
         </Routes>
       ) : (
         <Routes>
-          {/* <Route path="/test" element={<CampusCard />} /> */}
+          <Route path="/campuses/:id" element={<SoleCampus />} />
 
           <Route path="/campuses" element={<Campuses />} />
           <Route path="/students" element={<Students />} />
