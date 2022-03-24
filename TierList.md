@@ -8,31 +8,31 @@ Modelled after JPFP for FSA; this project will incorporate the PERN stack plus m
 
 #### Frontend
 
-- [ ] Write a component to display a list of all campuses (at least their names and images)
-- [ ] Write a component to display a list of all students (at least their names)
-- [ ] Write a campuses sub-reducer to manage campuses in your Redux store
-- [ ] Write a students sub-reducer to manage students in your Redux store
+- [C] Write a component to display a list of all campuses (at least their names and images)
+- [C] Write a component to display a list of all students (at least their names)
+- [C] Write a campuses sub-reducer to manage campuses in your Redux store
+- [C] Write a students sub-reducer to manage students in your Redux store
 - [ ] Display the all-campuses component when the url matches `/campuses`
 - [ ] Display the all-students component when the url matches `/students`
 - [ ] Add a links to the navbar that can be used to navigate to the all-campuses view and the all-students view
 
 #### Backend
 
-- [ ] Write a route to serve up all students
-- [ ] Write a route to serve up all campuses
+- [C] Write a route to serve up all students
+- [C] Write a route to serve up all campuses
 
 - Write a `campuses` model with the following information:
-  - [ ] name - not empty or null
-  - [ ] imageUrl - with a default value
-  - [ ] address - not empty or null
-  - [ ] description - extremely large text
+  - [C] name - not empty or null
+  - [C] imageUrl - with a default value
+  - [C] address - not empty or null
+  - [C] description - extremely large text
 - Write a `students` model with the following information:
-  - [ ] firstName - not empty or null
-  - [ ] lastName - not empty or null
-  - [ ] email - not empty or null; must be a valid email
-  - [ ] imageUrl - with a default value
-  - [ ] gpa - decimal between 0.0 and 4.0
-- [ ] Students may be associated with at most one campus. Likewise, campuses may be associated with many students
+  - [C] firstName - not empty or null
+  - [C] lastName - not empty or null
+  - [C] email - not empty or null; must be a valid email
+  - [C] imageUrl - with a default value
+  - [C] gpa - decimal between 0.0 and 4.0
+- [C] Students may be associated with at most one campus. Likewise, campuses may be associated with many students
 
 #### Seed
 

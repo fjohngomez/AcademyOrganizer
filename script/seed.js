@@ -16,6 +16,18 @@ async function seed() {
       lastName: 'G',
       email: 'me@me.com',
       gpa: 3.4
+    }),
+    Student.create({
+      firstName: 'Charlie',
+      lastName: 'Ackerman',
+      email: 'CAckerman@me.com',
+      gpa: 3.7
+    }),
+    Student.create({
+      firstName: 'Steph',
+      lastName: 'Chane',
+      email: 'SChane@me.com',
+      gpa: 3.9
     })
   ])
 
@@ -25,6 +37,16 @@ async function seed() {
       name: 'City College',
       address: '123 convent ave',
       description: 'a school I went to'
+    }),
+    Campus.create({
+      name: 'York College',
+      address: '123 york ave',
+      description: 'Some School around'
+    }),
+    Campus.create({
+      name: 'Hostos Community College',
+      address: 'grand concourse ave',
+      description: 'a bronx community college'
     })
   ])
 
