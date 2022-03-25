@@ -4,6 +4,7 @@ import auth from './auth'
 import campusesSlice from './campuses'
 import studentsSlice from './students'
 import soleCampusSlice from './soleCampus'
+import soleStudentSlice from './soleStudent'
 
 const store = configureStore({
   reducer: {
@@ -11,6 +12,7 @@ const store = configureStore({
     campuses: campusesSlice,
     students: studentsSlice,
     campus: soleCampusSlice,
+    student: soleStudentSlice
   },
   middleware: (getDefaultMiddleware) => [...getDefaultMiddleware(), createLogger({collapsed: true})]
 })

@@ -19,16 +19,10 @@ const initialState = {
 const soleCampusSlice = createSlice({
   name: 'campus',
   initialState,
-  reducers: {
-    fetchCampus(state, action) {
-      const campus = action.payload
-      state.sole = campus
-    }
-  },
+  reducers: {},
   extraReducers: {
     [getCampus.fulfilled] : (state, action) => {
       state.sole = action.payload
-      return state
     },
     [getCampus.rejected] : (state, action) => {
       state.error = action.error
@@ -36,5 +30,4 @@ const soleCampusSlice = createSlice({
   }
 })
 
-export const { fetchCampus } = soleCampusSlice.actions
 export default soleCampusSlice.reducer

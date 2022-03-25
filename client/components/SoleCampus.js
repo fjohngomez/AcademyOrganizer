@@ -6,10 +6,10 @@ import { getCampus } from '../store/soleCampus';
 const SoleCampus = () => {
 
   const dispatch = useDispatch()
-  const routerId = useParams().id
+  const campusId = useParams().id
 
   useEffect(()=>{
-    dispatch(getCampus(routerId))
+    dispatch(getCampus(campusId))
   }, [dispatch])
 
   const campus = useSelector(state => state.campus)

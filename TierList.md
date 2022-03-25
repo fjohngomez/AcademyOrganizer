@@ -36,7 +36,7 @@ Modelled after JPFP for FSA; this project will incorporate the PERN stack plus m
 
 #### Seed
 
-- [ ] Running the seed file creates campuses and students for demonstration purposes
+- [C] Running the seed file creates campuses and students for demonstration purposes
 
 Congrats! You have completed your first vertical slice! Make sure to `commit -m "Feature: Get All Campuses and Students"` before moving on.
 
@@ -65,7 +65,7 @@ Congrats! You have completed your first vertical slice! Make sure to `commit -m 
 
 #### Backend
 
-- [ ] Write a route to serve up a single campus (based on its id), _including that campuses' students_
+- [C] Write a route to serve up a single campus (based on its id), _including that campuses' students_
 - [ ] Write a route to serve up a single student (based on their id), _including that student's campus_
 
 Congrats! You have completed your second vertical slice! Make sure to `commit -m "Feature: Get Single Campus and Student"` before moving on.
