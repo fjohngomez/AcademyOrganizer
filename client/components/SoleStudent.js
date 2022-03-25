@@ -13,10 +13,13 @@ const SoleStudent = () => {
   }, [dispatch])
 
   const student = useSelector(state => state.student)
-  console.log(student)
+  const { firstName, lastName, email, gpa } = student.sole
   return (
     <div>
-      student here
+      <h1>{firstName}{lastName}</h1>
+      GPA: {gpa}
+      <br></br>
+      email: {email}
     </div>
   )
 }
