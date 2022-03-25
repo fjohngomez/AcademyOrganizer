@@ -1,9 +1,10 @@
 import React from 'react'
 import  { Card, CardMedia, CardContent, CardActions, Typography, Button } from '@mui/material'
+import { Link } from 'react-router-dom'
 
 const CampusCard = (props) => {
   console.log('campus loaded', props)
-  const { name, imageURL, address, description } = props.campus
+  const { id, name, imageURL, address, description } = props.campus
   return (
     <Card
     sx={{
@@ -19,7 +20,9 @@ const CampusCard = (props) => {
         flexGrow: 1
       }}>
         <Typography variant='h5' component='h2'>
+          <Link to={`/campuses/${id}`}>
           {name}
+          </Link>
         </Typography>
         <Typography variant='body1'>
           {description}
