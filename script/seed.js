@@ -55,8 +55,11 @@ async function seed() {
     User.create({ username: 'cody', password: '123' }),
     User.create({ username: 'murphy', password: '123' }),
   ])
-  students;
-  campuses;
+  await students;
+  await campuses;
+
+  const student1 = await Student.findByPk(1)
+  await student1.setCampus(1)
   console.log(`seeded ${users.length} users`)
   console.log(`seeded successfully`)
   return {
