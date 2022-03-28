@@ -21,6 +21,11 @@ const initialState = {
 const campusesSlice = createSlice({
   name: 'campuses',
   initialState,
+  reducers: {
+    resetCampuses (state, a) {
+      state.all = initialState.all
+    }
+  },
   extraReducers: {
     [getCampuses.fulfilled] : (state, action) => {
       state.all = action.payload
@@ -31,4 +36,5 @@ const campusesSlice = createSlice({
   }
 })
 
+export const { resetCampuses } = campusesSlice.actions
 export default campusesSlice.reducer

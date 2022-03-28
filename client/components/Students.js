@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { getStudents } from '../store/students'
+import { getStudents, resetStudents } from '../store/students'
 import { Box, Divider, Typography } from '@mui/material'
 import { Link } from 'react-router-dom'
 
@@ -8,6 +8,10 @@ const Students = () => {
   const dispatch = useDispatch()
   useEffect(()=>{
     dispatch(getStudents())
+
+    return function () {
+      dispatch(resetStudents())
+    }
   }, [dispatch])
 
   const students = useSelector(state => state.students.all)

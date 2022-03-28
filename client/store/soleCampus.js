@@ -19,7 +19,11 @@ const initialState = {
 const soleCampusSlice = createSlice({
   name: 'campus',
   initialState,
-  reducers: {},
+  reducers: {
+    resetCampus (state, action) {
+      state.sole = initialState.sole
+    }
+  },
   extraReducers: {
     [getCampus.fulfilled] : (state, action) => {
       state.sole = action.payload
@@ -30,4 +34,5 @@ const soleCampusSlice = createSlice({
   }
 })
 
+export const { resetCampus } = soleCampusSlice.actions
 export default soleCampusSlice.reducer
