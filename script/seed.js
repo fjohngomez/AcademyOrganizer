@@ -1,4 +1,5 @@
 'use strict'
+const { faker } = require('@faker-js/faker');
 
 const {db, models: {User, Student, Campus} } = require('../server/db')
 
@@ -7,26 +8,55 @@ const {db, models: {User, Student, Campus} } = require('../server/db')
  *      match the models, and populates the database.
  */
 
-const studentTestData = [
-  {
-    firstName: 'Freddy',
-    lastName: 'G',
-    email: 'me@me.com',
-    gpa: 3.4
-  },
-  {
-    firstName: 'Charlie',
-    lastName: 'Ackerman',
-    email: 'CAckerman@me.com',
-    gpa: 3.7
-  },
-  {
-    firstName: 'Steph',
-    lastName: 'Chane',
-    email: 'SChane@me.com',
-    gpa: 3.9
+const fakeStudent = () => {
+  const firstName = faker.name.firstName();
+  const lastName = faker.name.lastName();
+  const email = faker.internet.email();
+  const imageURL = faker.image.avatar();
+  const gpa = (Math.random()*(2)+ 2).toFixed(1)
+  console.log(gpa)
+  return {
+    firstName,
+    lastName,
+    email,
+    imageURL,
+    gpa
   }
-]
+}
+
+const testStudents = () => {
+  let count = 0;
+  const arr = [];
+  while(count < 30){
+    let student = fakeStudent();
+    arr.push(student);
+    count += 1;
+  }
+  return arr;
+}
+
+const studentTestData = testStudents()
+
+// const studentTestData = [
+//   {
+//     firstName: 'Freddy',
+//     lastName: 'G',
+//     email: 'me@me.com',
+//     gpa: 3.4
+//   },
+//   {
+//     firstName: 'Charlie',
+//     lastName: 'Ackerman',
+//     email: 'CAckerman@me.com',
+//     gpa: 3.7
+//   },
+//   {
+//     firstName: 'Steph',
+//     lastName: 'Chane',
+//     email: 'SChane@me.com',
+//     gpa: 3.9
+//   }
+// ]
 
 const campusTestData = [
   {
@@ -95,9 +125,16 @@ async function seed() {
     User.create({ username: 'cody', password: '123' }),
     User.create({ username: 'murphy', password: '123' }),
   ])
-  await Promise.all(campusTestData.map(campus => Campus.create(campus)))
-  const students = await Promise.all(studentTestData.map(student => Student.create(student))).then(values => console.log(values))
+  const campuses = await Promise.all(campusTestData.map(campus => Campus.create(campus)))
+  const students = await Promise.all(studentTestData.map(student => Student.create(student)))
 
+  await Promise.all(students.map(async (s, i) => {
+    const studentPk = i + 1;
+    const maxCampus = campuses.length
+    const randomCampus = Math.floor(Math.random() * (maxCampus) + 1)
+    const studentData = await Student.findByPk(studentPk);
+    await studentData.setCampus(randomCampus)
+  }))
 
   // const student1 = await Student.findByPk(1)
   // await student1.setCampus(1)
