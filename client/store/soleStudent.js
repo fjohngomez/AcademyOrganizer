@@ -19,7 +19,11 @@ const initialState = {
 const soleStudentSlice = createSlice({
   name: 'student',
   initialState,
-  reducers: {},
+  reducers: {
+    resetStudent (state, action) {
+      state.sole = initialState.sole
+    }
+  },
   extraReducers: {
     [getStudent.fulfilled] : (state, action) => {
       state.sole = action.payload
@@ -30,4 +34,5 @@ const soleStudentSlice = createSlice({
   }
 })
 
+export const { resetStudent } = soleStudentSlice.actions
 export default soleStudentSlice.reducer
