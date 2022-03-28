@@ -4,7 +4,9 @@ module.exports = router;
 
 router.get('/', async(req, res, next) => {
   try {
-    const campuses = await Campus.findAll();
+    const campuses = await Campus.findAll({
+      include: [Student]
+    });
     res.json(campuses);
   } catch (err) { next(err) }
 })

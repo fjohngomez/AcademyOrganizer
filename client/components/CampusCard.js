@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 const CampusCard = (props) => {
   console.log('campus loaded', props)
-  const { id, name, imageURL, address, description } = props.campus
+  const { id, name, imageURL, address, description, students } = props.campus
   return (
     <Card
     sx={{
@@ -24,8 +24,14 @@ const CampusCard = (props) => {
           {name}
           </Link>
         </Typography>
+        <p>
+          {`Students: ${students.length}`}
+        </p>
         <Typography variant='body1'>
           {description}
+        </Typography>
+        <Typography variant="body2">
+          Address: {address}
         </Typography>
       </CardContent>
       <CardActions>

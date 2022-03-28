@@ -11,10 +11,10 @@ const {db, models: {User, Student, Campus} } = require('../server/db')
 const fakeStudent = () => {
   const firstName = faker.name.firstName();
   const lastName = faker.name.lastName();
-  const email = faker.internet.email();
+  const email = `${firstName}.${lastName}@campus.edu`
   const imageURL = faker.image.avatar();
   const gpa = (Math.random()*(2)+ 2).toFixed(1)
-  console.log(gpa)
+
   return {
     firstName,
     lastName,
@@ -37,27 +37,6 @@ const testStudents = () => {
 
 const studentTestData = testStudents()
 
-// const studentTestData = [
-//   {
-//     firstName: 'Freddy',
-//     lastName: 'G',
-//     email: 'me@me.com',
-//     gpa: 3.4
-//   },
-//   {
-//     firstName: 'Charlie',
-//     lastName: 'Ackerman',
-//     email: 'CAckerman@me.com',
-//     gpa: 3.7
-//   },
-//   {
-//     firstName: 'Steph',
-//     lastName: 'Chane',
-//     email: 'SChane@me.com',
-//     gpa: 3.9
-//   }
-// ]
-
 const campusTestData = [
   {
     name: 'City College',
@@ -79,46 +58,7 @@ const campusTestData = [
 async function seed() {
   await db.sync({ force: true }) // clears db and matches models to tables
   console.log('db synced!')
-  // Students
-  // const students = await Promise.all([
-  //   Student.create({
-  //     firstName: 'Freddy',
-  //     lastName: 'G',
-  //     email: 'me@me.com',
-  //     gpa: 3.4
-  //   }),
-  //   Student.create({
-  //     firstName: 'Charlie',
-  //     lastName: 'Ackerman',
-  //     email: 'CAckerman@me.com',
-  //     gpa: 3.7
-  //   }),
-  //   Student.create({
-  //     firstName: 'Steph',
-  //     lastName: 'Chane',
-  //     email: 'SChane@me.com',
-  //     gpa: 3.9
-  //   }),
-  // ])
 
-  // Campuses
-  // const campuses = await Promise.all([
-  //   Campus.create({
-  //     name: 'City College',
-  //     address: '123 convent ave',
-  //     description: 'a school I went to'
-  //   }),
-  //   Campus.create({
-  //     name: 'York College',
-  //     address: '123 york ave',
-  //     description: 'Some School around'
-  //   }),
-  //   Campus.create({
-  //     name: 'Hostos Community College',
-  //     address: 'grand concourse ave',
-  //     description: 'a bronx community college'
-  //   })
-  // ])
 
   // Creating Users
   const users = await Promise.all([
@@ -138,6 +78,7 @@ async function seed() {
 
   // const student1 = await Student.findByPk(1)
   // await student1.setCampus(1)
+  console.log(`seeded ${students.length} students & ${campuses.length} campuses`)
   console.log(`seeded ${users.length} users`)
   console.log(`seeded successfully`)
   return {
