@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { getStudents } from '../store/students'
 import { Box, Divider, Typography } from '@mui/material'
+import { Link } from 'react-router-dom'
 
 const Students = () => {
   const dispatch = useDispatch()
@@ -14,7 +15,7 @@ const Students = () => {
   return (
     <>
     {students.map((student, i) => {
-      const { firstName, lastName, email, gpa } = student
+      const { id, firstName, lastName, email, gpa, imageURL, campus } = student
       return (
         <Box
           key={i}
@@ -25,13 +26,23 @@ const Students = () => {
           pb: 3
         }}>
           <Typography variant="h5">
+            <Link to={`/students/${id}`}>
             {firstName}{lastName}
+            </Link>
           </Typography>
+          <p>
+            <img src={imageURL} />
+          </p>
           <Divider />
           <Typography variant="body1">
-            {email}
+            Email: {email}
           </Typography>
-            {gpa}
+            GPA: {gpa}
+          <br></br>
+          Campus: <Link to={`/campuses/${campus.id}`}>
+          {campus.name}
+            </Link>
+
         </Box>
       )
     })}

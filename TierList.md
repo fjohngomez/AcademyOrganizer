@@ -36,7 +36,7 @@ Modelled after JPFP for FSA; this project will incorporate the PERN stack plus m
 
 #### Seed
 
-- [ ] Running the seed file creates campuses and students for demonstration purposes
+- [C] Running the seed file creates campuses and students for demonstration purposes
 
 Congrats! You have completed your first vertical slice! Make sure to `commit -m "Feature: Get All Campuses and Students"` before moving on.
 
@@ -49,24 +49,24 @@ Congrats! You have completed your first vertical slice! Make sure to `commit -m 
 #### Frontend
 
 - Write a component to display a single campus with the following information:
-  - [ ] The campus's name, image, address and description
-  - [ ] A list of the names of all students in that campus (or a helpful message if it doesn't have any students)
-- [ ] Display the appropriate campus's info when the url matches `/campuses/:campusId`
-- [ ] Clicking on a campus from the all-campuses view should navigate to show that campus in the single-campus view
+  - [C] The campus's name, image, address and description
+  - [C] A list of the names of all students in that campus (or a helpful message if it doesn't have any students)
+- [C] Display the appropriate campus's info when the url matches `/campuses/:campusId`
+- [C] Clicking on a campus from the all-campuses view should navigate to show that campus in the single-campus view
 
 - Write a component to display a single student with the following information:
-  - [ ] The student's full name, email, image, and gpa
-  - [ ] The name of their campus (or a helpful message if they don't have one)
-- [ ] Display the appropriate student when the url matches `/students/:studentId`
-- [ ] Clicking on a student from the all-students view should navigate to show that student in the single-student view
+  - [C] The student's full name, email, image, and gpa
+  - [C] The name of their campus (or a helpful message if they don't have one)
+- [C] Display the appropriate student when the url matches `/students/:studentId`
+- [C] Clicking on a student from the all-students view should navigate to show that student in the single-student view
 
-- [ ] Clicking on the name of a student in the single-campus view should navigate to show that student in the single-student view
-- [ ] Clicking on the name of a campus in the single-student view should navigate to show that campus in the single-campus view
+- [C] Clicking on the name of a student in the single-campus view should navigate to show that student in the single-student view
+- [C] Clicking on the name of a campus in the single-student view should navigate to show that campus in the single-campus view
 
 #### Backend
 
-- [ ] Write a route to serve up a single campus (based on its id), _including that campuses' students_
-- [ ] Write a route to serve up a single student (based on their id), _including that student's campus_
+- [C] Write a route to serve up a single campus (based on its id), _including that campuses' students_
+- [C] Write a route to serve up a single student (based on their id), _including that student's campus_
 
 Congrats! You have completed your second vertical slice! Make sure to `commit -m "Feature: Get Single Campus and Student"` before moving on.
 
