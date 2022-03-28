@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import { getStudent } from '../store/soleStudent'
 
 const SoleStudent = () => {
@@ -13,13 +13,17 @@ const SoleStudent = () => {
   }, [dispatch])
 
   const student = useSelector(state => state.student)
-  const { firstName, lastName, email, gpa } = student.sole
+  const { firstName, lastName, email, gpa, campus, imageURL } = student.sole
   return (
     <div>
-      <h1>{firstName}{lastName}</h1>
+      <img src={imageURL} />
+      <br></br>
+      <h1>{`${firstName} ${lastName}`}</h1>
       GPA: {gpa}
       <br></br>
       email: {email}
+      <br></br>
+      {`Campus: `}{campus ? (<Link to={`/campuses/${campus.id}`}>{campus.name}</Link>) : ('Unassigned')}
     </div>
   )
 }

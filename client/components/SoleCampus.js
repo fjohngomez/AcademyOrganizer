@@ -8,10 +8,6 @@ const SoleCampus = () => {
   const dispatch = useDispatch()
   const campusId = useParams().id
 
-  const [enrolledStudents, setStudents] = useState([])
-
-
-
   useEffect(()=>{
     dispatch(getCampus(campusId));
   }, [dispatch])
@@ -31,14 +27,16 @@ const SoleCampus = () => {
       <p>Students:</p>
       {students ? (
         students.map((student, i) =>{
-          const { firstName, lastName } = student
+          const { firstName, lastName, id } = student
           return (
             <div key={i}>
-              {firstName},{lastName}
+              <Link to={`/students/${id}`}>
+              {`${firstName} ${lastName}`}
+              </Link>
             </div>
           )
         })
-      ) : ''}
+      ) : 'No students'}
 
     </div>
   )
