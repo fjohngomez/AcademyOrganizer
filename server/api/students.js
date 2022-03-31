@@ -7,7 +7,7 @@ router.get('/', async(req, res, next) => {
     const students = await Student.findAll({
       include: [Campus]
     });
-    res.json(students)
+    res.status(200).send(students)
   } catch (err) { next(err)}
 })
 
@@ -20,6 +20,14 @@ router.get('/:id', async(req, res, next) => {
         id: id
       }
     });
-    res.json(data)
+    res.status(200).send(data)
    } catch (err) { next(err) }
+})
+
+router.post('/', async(req, res, next) => {
+  try {
+    const studentData = req.body;
+    const newStudent = await Student.create(studentData);
+    res.status(201).send(newStudent);
+  } catch (err) { next (err) }
 })
