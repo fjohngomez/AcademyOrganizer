@@ -17,11 +17,12 @@ const Campuses = () => {
   let campuses = useSelector(state => state.campuses.all)
   console.log(campuses)
   return (
-    <Container sx={{ py: 8}} maxWidth='md'>
-      <Grid container spacing={4}>
+    <Container sx={{ py: 8}} maxWidth='full'>
+
+      <Grid container>
         {campuses.map((campus, i)=>{
           return(
-          <Grid item key={i} xs={12} sm={6} m={4}>
+          <Grid item key={i} xs={12} sm={5} m={4}>
             {console.log('loaded')}
             <CampusCard campus={campus} />
           </Grid>

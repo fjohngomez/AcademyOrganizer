@@ -10,7 +10,17 @@ export const getCampuses = createAsyncThunk(
       return campuses.data
     } catch(e) { return Promise.reject(e) }
   }
-  )
+)
+
+export const createCampus = createAsyncThunk(
+  'campuses/createCampus',
+  async(newCampusData) => {
+    try{
+      const newCampus = await axios.post('/api/campuses', newCampusData);
+      return newCampus.data
+    } catch (e) { return Promise.reject(e)}
+  }
+)
 
 // Initial State
 const initialState = {
@@ -32,6 +42,9 @@ const campusesSlice = createSlice({
     },
     [getCampuses.rejected] : (state, action) => {
       state.error = action.error
+    },
+    [createCampus.fulfilled] : (state, action) => {
+      state.all = state.all.push(action.payload)
     }
   }
 })
