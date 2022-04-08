@@ -1,6 +1,8 @@
 import axios from 'axios'
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
+
+
 //Thunks
 export const getCampuses = createAsyncThunk(
   'campuses/getCampuses',
@@ -11,16 +13,22 @@ export const getCampuses = createAsyncThunk(
     } catch(e) { return Promise.reject(e) }
   }
 )
-
 export const createCampus = createAsyncThunk(
   'campuses/createCampus',
-  async(newCampusData) => {
+  async(obj) => {
     try{
-      const newCampus = await axios.post('/api/campuses', newCampusData);
-      return newCampus.data
+      const newCampus = await axios.post('/api/campuses', obj);
+      console.log('newcampus obj', newCampus)
+      if(newCampus.status === 201){
+        const id = newCampus.data.id
+        const campus = await axios.get(`/api/campuses/${id}`)
+        return campus.data
+      }
+      // return newCampus.data
     } catch (e) { return Promise.reject(e)}
   }
 )
+
 
 // Initial State
 const initialState = {
@@ -44,9 +52,22 @@ const campusesSlice = createSlice({
       state.error = action.error
     },
     [createCampus.fulfilled] : (state, action) => {
-      state.all = state.all.push(action.payload)
+      console.log('triggers')
+      state.all.push(action.payload)
+    },
+    [createCampus.rejected] : (state, action) => {
+      state.error = action.error
     }
   }
+  // extraReducers : (builder) => {
+  //   builder.addCase(getCampuses.fulfilled.type, (state, action)=>{
+  //     state.all = action.payload
+  //     // state.all.push(action.payload)
+  //   }),
+  //   builder.addCase(createCampus.fulfilled.type, (state, action) => {
+  //     state.all.push(action.payload)
+  //   })
+  // }
 })
 
 export const { resetCampuses } = campusesSlice.actions

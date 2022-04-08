@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 
 const CampusCard = (props) => {
   console.log('campus loaded', props)
+
   const { id, name, imageURL, address, description, students } = props.campus
   return (
     <Card
