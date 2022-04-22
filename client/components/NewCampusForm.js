@@ -5,13 +5,14 @@ import { TextField, Divider } from '@mui/material'
 
 const NewCampusForm = (props) => {
 
+  const defaultLocalState = {
+    name: '',
+    address: '',
+    description: '',
+    imageURL: '',
+  };
   const dispatch = useDispatch()
-  const [intake, setIntake] = useState({
-    name: 'test',
-    address: '123test',
-    description: '1231',
-    imageURL: '1231',
-  })
+  const [intake, setIntake] = useState(defaultLocalState)
 
   const handleChange = (e) => {
     setIntake({
@@ -26,23 +27,26 @@ const NewCampusForm = (props) => {
     console.log('before submit:', intake)
     console.log('props', props)
     dispatch(createCampus(intake))
+    setIntake(defaultLocalState)
     props.set(true)
   }
+
+  const { name, address, description, imageURL } = intake
 
   return (
     <div>
       <div className="componentContainer">
       <form onSubmit={handleSubmit}>
         <div className="createForm">
-            <TextField required id="name" label="Name" onChange={handleChange} margin="normal" />
+            <TextField required id="name" label="Name" onChange={handleChange} value={ name } margin="normal" />
             <Divider />
             <TextField
             required id="address" label="Address"
-            onChange={handleChange} margin="normal" />
+            onChange={handleChange} value={ address } margin="normal" />
             <Divider />
-            <TextField id="description" label="Description" onChange={handleChange}  margin="normal" multiline={true} />
+            <TextField id="description" label="Description" onChange={handleChange} value={ description } margin="normal" multiline={true} />
             <Divider />
-            <TextField id="imageURL" label="Image URL" onChange={handleChange} multiline={true} margin="normal" />
+            <TextField id="imageURL" value={ imageURL } label="Image URL" onChange={handleChange} multiline={true} margin="normal" />
 
           </div>
         <input type="submit" />
