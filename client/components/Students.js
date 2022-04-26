@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { getStudents, resetStudents } from '../store/students'
-import { Grid, Box, Divider, Typography } from '@mui/material'
-import { Link } from 'react-router-dom'
+import { Grid } from '@mui/material'
 import NewStudentForm from './NewStudentForm';
 import StudentCard from './StudentCard'
 
@@ -35,34 +34,6 @@ const Students = () => {
         <Grid item xs={12} sm={4} m={2} lg={2} key={i}>
           <StudentCard student={student} />
         </Grid>
-        // <Box
-        //   key={i}
-        //   sx={{
-        //   height: "50vh",
-        //   width: "50vw",
-        //   pt: 3,
-        //   pb: 3
-        // }}>
-        //   <Typography variant="h5">
-        //     <Link to={`/students/${id}`}>
-        //     {firstName}{lastName}
-        //     </Link>
-        //   </Typography>
-        //   <p>
-        //     <img src={imageURL} />
-        //   </p>
-        //   <Divider />
-        //   <Typography variant="body1">
-        //     Email: {email}
-        //   </Typography>
-        //     GPA: {gpa}
-        //   <br></br>
-        //   Campus: {campus ? (<Link to={`/campuses/${campus.id}`}>
-        //   {campus.name}
-        //     </Link>) : (`no campus`)}
-
-
-        // </Box>
       )
     })}
     </Grid>
