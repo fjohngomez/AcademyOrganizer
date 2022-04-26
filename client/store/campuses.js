@@ -18,13 +18,11 @@ export const createCampus = createAsyncThunk(
   async(obj) => {
     try{
       const newCampus = await axios.post('/api/campuses', obj);
-      console.log('newcampus obj', newCampus)
       if(newCampus.status === 201){
         const id = newCampus.data.id
         const campus = await axios.get(`/api/campuses/${id}`)
         return campus.data
       }
-      // return newCampus.data
     } catch (e) { return Promise.reject(e)}
   }
 )

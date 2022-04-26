@@ -12,9 +12,9 @@ Modelled after JPFP for FSA; this project will incorporate the PERN stack plus m
 - [C] Write a component to display a list of all students (at least their names)
 - [C] Write a campuses sub-reducer to manage campuses in your Redux store
 - [C] Write a students sub-reducer to manage students in your Redux store
-- [ ] Display the all-campuses component when the url matches `/campuses`
-- [ ] Display the all-students component when the url matches `/students`
-- [ ] Add a links to the navbar that can be used to navigate to the all-campuses view and the all-students view
+- [C] Display the all-campuses component when the url matches `/campuses`
+- [C] Display the all-students component when the url matches `/students`
+- [C] Add a links to the navbar that can be used to navigate to the all-campuses view and the all-students view
 
 #### Backend
 
@@ -78,12 +78,12 @@ Congrats! You have completed your second vertical slice! Make sure to `commit -m
 
 #### Frontend
 
-- [ ] Write a component to display a form for adding a new campus that contains inputs for _at least_ the name and address.
-- [ ] Display this component as part of the all-campuses view, alongside the list of campuses
+- [C] Write a component to display a form for adding a new campus that contains inputs for _at least_ the name and address.
+- [C] Display this component as part of the all-campuses view, alongside the list of campuses
 - Submitting the form with a valid name/address should:
 
-  - [ ] Make an AJAX request that causes the new campus to be persisted in the database
-  - [ ] Add the new campus to the list of campuses without needing to refresh the page
+  - [C] Make an AJAX request that causes the new campus to be persisted in the database
+  - [C] Add the new campus to the list of campuses without needing to refresh the page
 
 - [ ] Write a component to display a form for adding a new student that contains inputs for _at least_ first name, last name and email
 - [ ] Display this component as part of the all-students view, alongside the list of students
@@ -93,7 +93,7 @@ Congrats! You have completed your second vertical slice! Make sure to `commit -m
 
 #### Backend
 
-- [ ] Write a route to add a new campus
+- [C] Write a route to add a new campus
 - [ ] Write a route to add a new student
 
 Congrats! You have completed your third vertical slice! Make sure to `commit -m "Feature: Add Campus and Student"` before moving on.
