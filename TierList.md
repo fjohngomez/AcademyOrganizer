@@ -175,6 +175,8 @@ Congrats! You have completed your fourth vertical slice! Make sure to `commit -m
 - [ ] If a user attempts to view a student/campus that doesn't exist, a helpful message should be displayed
 - [ ] Whenever a component needs to wait for data to load from the server, a "loading" message should be displayed until the data is available
 - [ ] Overall, the app is spectacularly styled and visually stunning
+- [ ] When user adds student or campus, Modal/Pop up the new entry
+- [ ] Add a recent transactions/changes component to display the last few changes to the DB
 
 #### Ordering
 

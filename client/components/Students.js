@@ -3,9 +3,12 @@ import { useSelector, useDispatch } from 'react-redux'
 import { getStudents, resetStudents } from '../store/students'
 import { Box, Divider, Typography } from '@mui/material'
 import { Link } from 'react-router-dom'
+import NewStudentForm from './NewStudentForm';
 
 const Students = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  const [created, setCreated] = useState(false);
+
   useEffect(()=>{
     dispatch(getStudents())
 
@@ -18,6 +21,8 @@ const Students = () => {
 
   return (
     <>
+    <NewStudentForm set={setCreated} />
+
     {students.map((student, i) => {
       const { id, firstName, lastName, email, gpa, imageURL, campus } = student
       return (
@@ -43,9 +48,10 @@ const Students = () => {
           </Typography>
             GPA: {gpa}
           <br></br>
-          Campus: <Link to={`/campuses/${campus.id}`}>
+          Campus: {campus ? (<Link to={`/campuses/${campus.id}`}>
           {campus.name}
-            </Link>
+            </Link>) : (`no campus`)}
+
 
         </Box>
       )

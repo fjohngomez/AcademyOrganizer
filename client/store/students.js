@@ -19,7 +19,7 @@ export const createStudent = createAsyncThunk(
       const newStudent = await axios.post('/api/students', obj);
       if(newStudent.status === 201){
         const id = newStudent.data.id
-        const student = await axios.get(`/api/students${id}`)
+        const student = await axios.get(`/api/students/${id}`)
         return student.data
       }
     } catch (e) {
