@@ -26,9 +26,15 @@ const NewStudentForm = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(intake)
-    dispatch(createStudent(intake))
-    setIntake(defaultLocalState)
-    props.set(true)
+    const { gpa } = intake;
+    if(gpa.toString().length <= 5){
+      dispatch(createStudent(intake))
+      setIntake(defaultLocalState)
+      props.set(true)
+    }
+    else if(gpa.toString().length > 5){
+      alert(`GPA max 4 numbers. example: 3.454 `)
+    }
   }
 
   const { firstName, lastName, gpa, email, imageURL} = intake
@@ -44,7 +50,8 @@ const NewStudentForm = (props) => {
           value = {lastName} onChange={handleChange} margin="normal" />
           <Divider />
           <TextField
-          required id="gpa" label="GPA" type="number"
+          required id="gpa" label="GPA"
+          inputProps={{ inputMode: 'decimal'}}
           value={gpa} onChange={handleChange} margin="normal" />
           <Divider />
           <TextField id="email" label="E-mail" value={email} onChange={handleChange}  margin="normal" />
