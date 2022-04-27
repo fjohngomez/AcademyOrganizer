@@ -31,3 +31,14 @@ router.post('/', async(req, res, next) => {
     res.status(201).send(newStudent);
   } catch (err) { next (err) }
 })
+
+router.delete('/:id', async(req, res, next) => {
+  try {
+    const id = req.params.id;
+    const student = await Student.findByPk(id);
+    await student.destroy();
+    res.status(200)
+  } catch (e) {
+    next(e)
+  }
+})
