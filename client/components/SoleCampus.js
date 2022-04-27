@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, Link } from 'react-router-dom'
-import { getCampus } from '../store/soleCampus';
+import { getCampus, resetCampus } from '../store/soleCampus';
 
 const SoleCampus = () => {
 
@@ -10,6 +10,10 @@ const SoleCampus = () => {
 
   useEffect(()=>{
     dispatch(getCampus(campusId));
+
+    return function () {
+      dispatch(resetCampus())
+    }
   }, [dispatch])
 
   const campus = useSelector(state => state.campus)

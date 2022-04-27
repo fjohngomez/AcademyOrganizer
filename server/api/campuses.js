@@ -7,7 +7,7 @@ router.get('/', async(req, res, next) => {
     const campuses = await Campus.findAll({
       include: [Student]
     });
-    res.json(campuses);
+    res.status(200).send(campuses);
   } catch (err) { next(err) }
 })
 
@@ -20,6 +20,15 @@ router.get('/:id', async(req, res, next) => {
         id: id
       }
     });
-    res.json(data);
+    res.status(200).send(data);
+  } catch (err) { next(err) }
+})
+
+//post new campus
+router.post('/', async(req, res, next) => {
+  try {
+    const newCampusData = req.body;
+    const newCampus = await Campus.create(newCampusData);
+    res.status(201).send(newCampus);
   } catch (err) { next(err) }
 })
