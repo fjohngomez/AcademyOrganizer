@@ -33,13 +33,13 @@ router.post('/', async(req, res, next) => {
   } catch (err) { next(err) }
 })
 
-router.delete('/:id'), async(req, res, next) => {
+router.delete('/:id', async(req, res, next) => {
   try {
     const id = req.params.id;
     const campus = await Campus.findByPk(id);
     await campus.destroy();
-    res.status(201)
+    res.status(200).send(campus)
   } catch (e) {
     next(e)
   }
-}
+})

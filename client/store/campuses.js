@@ -26,7 +26,17 @@ export const createCampus = createAsyncThunk(
     } catch (e) { return Promise.reject(e)}
   }
 )
-
+export const deleteCampus = createAsyncThunk(
+  'campuses/deleteCampus',
+  async(id) => {
+    try {
+      const campusDeleted = await axios.delete(`/api/campuses/${id}`);
+      return campusDeleted.data
+    } catch (e) {
+      return Promise.reject(e)
+    }
+  }
+)
 
 // Initial State
 const initialState = {
@@ -54,6 +64,14 @@ const campusesSlice = createSlice({
       state.all.push(action.payload)
     },
     [createCampus.rejected] : (state, action) => {
+      state.error = action.error
+    },
+    [deleteCampus.fulfilled] : (state, action) => {
+      state.all = state.all.filter(campus => {
+        return campus.id !== action.payload.id
+      })
+    },
+    [deleteCampus.rejected] : (state, action) => {
       state.error = action.error
     }
   }
