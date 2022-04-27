@@ -1,10 +1,17 @@
 import React from 'react';
 import  { Card, CardHeader, CardActionArea, CardActions, CardMedia, CardContent, Grid, Typography, Button } from '@mui/material'
-import { Link } from 'react-router-dom'
+import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { deleteStudent } from '../store/students'
 
 const StudentCard = (props) =>{
-
   const { id, firstName, lastName, gpa, email, imageURL, campus } = props.student
+  const dispatch = useDispatch();
+
+  const delStudent = (id) => {
+    dispatch(deleteStudent(id));
+    props.set(true)
+  }
 
   return (
       <Grid lg={true} item>
@@ -56,9 +63,9 @@ const StudentCard = (props) =>{
               Edit
             </Button>
           </Link>
-            {/* <Button size = "small" onClick={() => props.delStudent(id)}>
-              Delete
-            </Button> */}
+            <Button size = "small" onClick={() => delStudent(id)}>
+              Delete X
+            </Button>
         </CardActions>
         {/* {props.unregister ? (<Button onClick={()=>props.unregister(props.student)}>
           Unregister</Button>) : <div />} */}

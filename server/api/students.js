@@ -37,7 +37,7 @@ router.delete('/:id', async(req, res, next) => {
     const id = req.params.id;
     const student = await Student.findByPk(id);
     await student.destroy();
-    res.status(200)
+    res.status(200).send(student)
   } catch (e) {
     next(e)
   }
