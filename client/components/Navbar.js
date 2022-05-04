@@ -41,11 +41,11 @@ function Navbar () {
 
   return (
     <Box sx={{ flexGrow: 1}}>
-      <AppBar position="static">
+      <AppBar position="static" sx={{
+        backgroundColor: '#B6BFD3'
+      }}>
 
-        <Toolbar sx={{
-
-        }}>
+        <Toolbar>
           <IconButton edge="start" color="inherit" aria-label="menu" sx={{ mr: 2}}>
             Academy Organizer
           </IconButton>
@@ -89,14 +89,10 @@ function Navbar () {
           )}
         </Box>
 
-
-
-
-
         </Toolbar>
 
         <Container maxWidth="xl" sx={{
-          backgroundColor: "gray",
+          backgroundColor: "#8C94A4",
           minHeight: '6vh',
           display: 'flex',
 
