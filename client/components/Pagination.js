@@ -1,59 +1,30 @@
 import React, { useState } from 'react';
 
-const Pagination = ({ data, RenderComponent, title, pageLimit, dataLimit}) => {
-  const [pages] = useState(Math.round(data.length / dataLimit));
+function usePagination ( data, itemsPerPage) {
   const [currentPage, setCurrentPage] = useState(1);
+  const maxPage = Math.ceil(data.length / itemsPerPage);
 
-  function goToNextPage(){
-    setCurrentPage((page) => page + 1)
+  function currentData(){
+    const begin = (currentPage - 1) * itemsPerPage;
+    const end = begin + itemsPerPage;
+    return data.slice(begin, end);
   }
 
-  function goToPreviousPage(){
-    setCurrentPage((page) => page - 1)
+  function next(){
+    setCurrentPage(currentPage => Math.min(currentPage + 1, maxPage));
   }
 
-  function changePage(e){
-    const pageNumber = Number(e.target.textContent);
-    setCurrentPage(pageNumber);
+  function prev(){
+    setCurrentPage(currentPage => Math.max(currentPage - 1, 1));
   }
 
-  const getPaginatedData = () => {
-    const startIndex = currentPage * dataLimit - dataLimit;
-    const endIndex = startIndex + dataLimit;
-    return data.slice(startIndex, endIndex)
+  function jump(page){
+    const pageNumber = Math.max(1, page);
+    setCurrentPage(currentPage => Math.min(pageNumber, maxPage));
   }
 
-  const getPaginatedGroup = () => {
-    let start = Math.floor((currentPage -1 )/ pageLimit) * pageLimit;
-    return new Array(pageLimit).fill().map((_, idx)=> start + idx + 1);
-  }
-  return (
-    <div>
-      <h1>{title}</h1>
-      <div>
-        {getPaginatedData().map((d, idx) => (
-          <RenderComponent key={idx} data={d} />
-        ))}
-      </div>
-      <div>
-        <button onClick={goToPreviousPage}>
-          Prev
-        </button>
-        {getPaginatedGroup().map((item, index)=> (
-          <button
-          key={index}
-          onClick={changePage}>
-            {item}
-          </button>
-        ))}
-        <button
-        onClick={goToNextPage}>
-          Next
-        </button>
-      </div>
-    </div>
-  )
-
+  return { next, prev, jump, currentData, currentPage, maxPage};
 }
 
-export default Pagination;
+
+export default usePagination;
