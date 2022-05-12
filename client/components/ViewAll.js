@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react' ;
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
-import { Container, Box, Paper, Pagination } from '@mui/material';
+import { Container, Box, Paper, Pagination, TableContainer, TableRow, TableBody, TableCell, Table, TableHead } from '@mui/material';
 import { getStudents, resetStudents } from '../store/students';
 import usePagination from './Pagination';
 
@@ -33,11 +33,19 @@ const ViewAll = () => {
   }
 
   function DataVisual (props) {
-    const {firstName, lastName, email, imageURL, gpa} = props.data
+    const {firstName, lastName, email, imageURL, gpa, campus} = props.data
     return (
-      <>
-      {`${firstName} ${lastName} ${email} ${imageURL} ${gpa}`}
-      </>
+
+    <TableRow>
+      <TableCell>{firstName}</TableCell>
+      <TableCell>{lastName}</TableCell>
+      <TableCell align='right'>{gpa}</TableCell>
+      <TableCell align='right'>{campus.name}</TableCell>
+      <TableCell align='right'>{email}</TableCell>
+    </TableRow>
+      // <>
+      // {`${firstName} ${lastName} ${email} ${imageURL} ${gpa}`}
+      // </>
     )
   }
 
@@ -56,9 +64,25 @@ const ViewAll = () => {
       minHeight: '68vh',
       width: '55vw'
     }}>
-      {_DATA.currentData().map((value, idx) => {
-        return (<DataVisual data={value} key={idx} />)
-      })}
+
+      <TableContainer component={Paper}>
+        <Table sx={{minWidth : '100%'}}>
+          <TableHead>
+            <TableRow>
+              <TableCell>First Name</TableCell>
+              <TableCell>Last Name</TableCell>
+              <TableCell align='right'>GPA</TableCell>
+              <TableCell align='right'>Campus</TableCell>
+              <TableCell align='right'>Email</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {_DATA.currentData().map((value, idx) => {
+              return (<DataVisual data={value} key={idx} />)
+            })}
+          </TableBody>
+        </Table>
+      </TableContainer>
       <Pagination
       count={count}
       size='small'
