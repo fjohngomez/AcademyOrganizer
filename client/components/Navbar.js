@@ -53,7 +53,7 @@ function Navbar () {
 
           <Box sx={{
             flexGrow: 1,
-            display: {xs: 'none', md: 'flex'},
+            display: 'flex',
             alignSelf: 'flex-end',
             justifyContent: 'flex-end'
           }}>
@@ -91,7 +91,7 @@ function Navbar () {
 
         </Toolbar>
 
-        <Container maxWidth="xl" sx={{
+        <Toolbar sx={{
           backgroundColor: "#8C94A4",
           minHeight: '6vh',
           display: 'flex',
@@ -99,7 +99,7 @@ function Navbar () {
         }}>
           <Box sx={{
           flexGrow: 1,
-          display: {xs: 'none', md: 'flex'},
+          display: 'flex',
         }}>
           {pages.map((page,i)=>{
             const { displayName, link,  ariaLabel } = page
@@ -117,7 +117,7 @@ function Navbar () {
           </Box>
 
 
-        </Container>
+        </Toolbar>
       </AppBar>
     </Box>
   );

@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from 'react' ;
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
-import { Container, Box, Paper, Pagination, TableContainer, TableRow, TableBody, TableCell, Table, TableHead } from '@mui/material';
+import { Container, Box, Paper, Pagination, TableContainer, TableRow, TableBody, TableCell, Table, TableHead, Grid } from '@mui/material';
 import { getStudents, resetStudents } from '../store/students';
 import usePagination from './Pagination';
 
 const ViewAll = () => {
   const dispatch =  useDispatch();
   const [change, setChange] = useState(false);
-
-
 
   useEffect(()=>{
     setChange(false)
@@ -50,58 +48,106 @@ const ViewAll = () => {
   }
 
   return (
-    <Container
+    <Grid container
+    spacing={2}
     maxWidth='full'
     sx={{
         py: 3,
         px: 6,
         display: 'flex',
         justifyContent: 'space-between',
-        minHeight: '85vh'
+        minHeight: '60vh'
     }}>
+    <Grid item xs={12} xl={6} >
+      <Box component={Paper} elevation={5} sx={{
+        // minHeight: '68vh',
+        // width: '55vw'
+      }}>
 
-    <Box component={Paper} elevation={5} sx={{
-      minHeight: '68vh',
-      width: '55vw'
-    }}>
+        <TableContainer component={Paper}>
+          <Table sx={{minWidth : '100%'}}>
+            <TableHead>
+              <TableRow>
+                <TableCell>First Name</TableCell>
+                <TableCell>Last Name</TableCell>
+                <TableCell align='right'>GPA</TableCell>
+                <TableCell align='right'>Campus</TableCell>
+                <TableCell align='right'>Email</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {_DATA.currentData().map((value, idx) => {
+                return (<DataVisual data={value} key={idx} />)
+              })}
+            </TableBody>
+          </Table>
+        </TableContainer>
+        <Container sx={{
+          py: '8px'
+        }}>
+          <Pagination
+          count={count}
+          size='small'
+          page={page}
+          variant='outlined'
+          shape='rounded'
+          onChange={handleChange} />
+        </Container>
+      </Box>
+    </Grid>
 
-      <TableContainer component={Paper}>
-        <Table sx={{minWidth : '100%'}}>
-          <TableHead>
-            <TableRow>
-              <TableCell>First Name</TableCell>
-              <TableCell>Last Name</TableCell>
-              <TableCell align='right'>GPA</TableCell>
-              <TableCell align='right'>Campus</TableCell>
-              <TableCell align='right'>Email</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {_DATA.currentData().map((value, idx) => {
-              return (<DataVisual data={value} key={idx} />)
-            })}
-          </TableBody>
-        </Table>
-      </TableContainer>
-      <Pagination
-      count={count}
-      size='small'
-      page={page}
-      variant='outlined'
-      shape='rounded'
-      onChange={handleChange} />
-    </Box>
-
-    <Box component={Paper} elevation={5} sx={{
-      minHeight: '68vh',
-      width: '40vw'
-    }}>
-
-
-    </Box>
+    <Grid item xs={12} xl={6}>
+      <Box component={Paper} elevation={5} sx={{
+        minHeight: '68vh',
+        width: '100%'
+      }}>
 
 
-    </Container>
+
+      {/* for visual width  */}
+
+        <Box component={Paper} elevation={5} sx={{
+        minHeight: '68vh',
+        // width: '55vw'
+      }}>
+
+        <TableContainer component={Paper}>
+          <Table sx={{minWidth : '100%'}}>
+            <TableHead>
+              <TableRow>
+                <TableCell>First Name</TableCell>
+                <TableCell>Last Name</TableCell>
+                <TableCell align='right'>GPA</TableCell>
+                <TableCell align='right'>Campus</TableCell>
+                <TableCell align='right'>Email</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {_DATA.currentData().map((value, idx) => {
+                return (<DataVisual data={value} key={idx} />)
+              })}
+            </TableBody>
+          </Table>
+        </TableContainer>
+        <Pagination
+        count={count}
+        size='small'
+        page={page}
+        variant='outlined'
+        shape='rounded'
+        onChange={handleChange} />
+      </Box>
+
+
+      {/* end */}
+
+
+
+      </Box>
+    </Grid>
+
+
+    </Grid>
   )
 }
 
