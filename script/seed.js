@@ -27,7 +27,7 @@ const fakeStudent = () => {
 const testStudents = () => {
   let count = 0;
   const arr = [];
-  while(count < 30){
+  while(count < 200){
     let student = fakeStudent();
     arr.push(student);
     count += 1;

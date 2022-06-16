@@ -1,9 +1,17 @@
 import React from 'react'
-import  { Card, CardMedia, CardContent, CardActions, Typography, Button } from '@mui/material'
+import  { Card, CardMedia, CardContent, CardActions, Typography, Button } from '@mui/material';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom'
+import { deleteCampus } from '../store/campuses';
 
 const CampusCard = (props) => {
-  console.log('campus loaded', props)
+
+  const dispatch = useDispatch();
+
+  const delCampus = (id) => {
+    props.set(true)
+    dispatch(deleteCampus(id))
+  }
 
   const { id, name, imageURL, address, description, students } = props.campus
   return (
@@ -36,8 +44,11 @@ const CampusCard = (props) => {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size='small'>View</Button>
+        <Link to={`/campuses/${id}`}>
+          <Button size='small'>View</Button>
+        </Link>
         <Button size='small'>Edit</Button>
+        <Button size='small' onClick={()=> delCampus(id)}>Delete X</Button>
       </CardActions>
 
 

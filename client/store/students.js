@@ -28,6 +28,18 @@ export const createStudent = createAsyncThunk(
   }
 )
 
+export const deleteStudent = createAsyncThunk(
+  'students/deleteStudent',
+  async(id) => {
+    try {
+      const studentDeleted = await axios.delete(`/api/students/${id}`);
+      return studentDeleted.data
+    } catch (e) {
+      return Promise.reject(e)
+    }
+  }
+)
+
 
 //initialState
 const initialState = {
@@ -54,6 +66,14 @@ const studentsSlice = createSlice({
       state.all.push(action.payload)
     },
     [createStudent.rejected] : (state, action) => {
+      state.error = action.error
+    },
+    [deleteStudent.fulfilled] : (state, action) => {
+      state.all = state.all.filter(student => {
+        return student.id !== action.payload.id
+      })
+    },
+    [deleteStudent.rejected] : (state, action) => {
       state.error = action.error
     }
   }

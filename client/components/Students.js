@@ -7,9 +7,10 @@ import StudentCard from './StudentCard'
 
 const Students = () => {
   const dispatch = useDispatch();
-  const [created, setCreated] = useState(false);
+  const [change, setChange] = useState(false);
 
   useEffect(()=>{
+    setChange(false)
     dispatch(getStudents())
 
     return function () {
@@ -25,14 +26,14 @@ const Students = () => {
       maxWidth='full'
       spacing={2}>
       <Grid item xs={12} sm={4} m={2} lg={2}>
-        <NewStudentForm set={setCreated} />
+        <NewStudentForm set={setChange} />
       </Grid>
 
     {students.map((student, i) => {
 
       return (
         <Grid item xs={12} sm={4} m={2} lg={2} key={i}>
-          <StudentCard student={student} />
+          <StudentCard student={student} set={setChange} />
         </Grid>
       )
     })}

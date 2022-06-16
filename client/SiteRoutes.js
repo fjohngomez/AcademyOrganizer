@@ -9,6 +9,7 @@ import Students from './components/Students';
 import SoleCampus from './components/SoleCampus';
 import {me} from './store'
 import SoleStudent from './components/SoleStudent';
+import ViewAll from './components/ViewAll';
 
 function SiteRoutes () {
   const isLoggedIn = useSelector(state => !!state.auth.id)
@@ -28,6 +29,7 @@ function SiteRoutes () {
         </Routes>
       ) : (
         <Routes>
+          <Route path="/test" element={<ViewAll />} />
           <Route path="/campuses/:id" element={<SoleCampus />} />
           <Route path="/students/:id" element={<SoleStudent />} />
 
