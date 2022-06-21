@@ -8,6 +8,10 @@ import usePagination from './Pagination';
 const ViewAll = () => {
   const dispatch =  useDispatch();
   const [change, setChange] = useState(false);
+  const [selected, setSelected] = useState(null)
+
+  // Logger
+  console.log('selected student:', selected)
 
   useEffect(()=>{
     setChange(false)
@@ -34,7 +38,7 @@ const ViewAll = () => {
     const {firstName, lastName, email, imageURL, gpa, campus} = props.data
     return (
 
-    <TableRow>
+    <TableRow onClick={e => setSelected(props.data)}>
       <TableCell>{firstName}</TableCell>
       <TableCell>{lastName}</TableCell>
       <TableCell align='right'>{gpa}</TableCell>
@@ -46,6 +50,20 @@ const ViewAll = () => {
       // </>
     )
   }
+
+  function SelectedStudentVisual (props) {
+    const {firstName, lastName, email, imageURL, gpa, campus} = props.data;
+    return (
+      <Box>
+        {firstName}<br></br>
+        {lastName}<br></br>
+        {gpa}<br></br>
+        {campus.name}<br></br>
+        {email}<br></br>
+      </Box>
+    )
+  }
+
 
   return (
     <Grid container
@@ -102,11 +120,14 @@ const ViewAll = () => {
         width: '100%'
       }}>
 
+      {selected ? (
+        <SelectedStudentVisual data={selected} />
+      ): ('No student selected')}
 
 
       {/* for visual width  */}
 
-        <Box component={Paper} elevation={5} sx={{
+        {/* <Box component={Paper} elevation={5} sx={{
         minHeight: '68vh',
         // width: '55vw'
       }}>
@@ -136,7 +157,7 @@ const ViewAll = () => {
         variant='outlined'
         shape='rounded'
         onChange={handleChange} />
-      </Box>
+      </Box> */}
 
 
       {/* end */}
