@@ -58,7 +58,7 @@ const ViewAll = () => {
         justifyContent: 'space-between',
         minHeight: '60vh'
     }}>
-    <Grid item xs={12} xl={6} >
+    <Grid item xs={12} lg={6} >
       <Box component={Paper} elevation={5} sx={{
         // minHeight: '68vh',
         // width: '55vw'
@@ -96,7 +96,7 @@ const ViewAll = () => {
       </Box>
     </Grid>
 
-    <Grid item xs={12} xl={6}>
+    <Grid item xs={12} lg={6}>
       <Box component={Paper} elevation={5} sx={{
         minHeight: '68vh',
         width: '100%'
