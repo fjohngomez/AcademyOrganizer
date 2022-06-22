@@ -10,14 +10,11 @@ const StudentCard = (props) =>{
 
   const delStudent = (id) => {
     dispatch(deleteStudent(id));
-    props.set(true)
+    props.set(false)
   }
 
   return (
-      <Grid lg={true} item>
-      <Card sx={{
-        width: 200
-      }}>
+      <Card>
         <CardHeader
         title={
           <Link to={`/students/${id}`}>
@@ -71,7 +68,6 @@ const StudentCard = (props) =>{
           Unregister</Button>) : <div />} */}
 
       </Card>
-    </Grid>
 
   )
 }

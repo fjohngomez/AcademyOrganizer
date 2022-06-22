@@ -3,12 +3,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { Container, Box, Paper, Pagination, TableContainer, TableRow, TableBody, TableCell, Table, TableHead, Grid } from '@mui/material';
 import { getStudents, resetStudents } from '../store/students';
+import StudentCard from './StudentCard'
 import usePagination from './Pagination';
+// import styles from './viewAll.css'
 
 const ViewAll = () => {
   const dispatch =  useDispatch();
   const [change, setChange] = useState(false);
-  const [selected, setSelected] = useState(null)
+  const [selected, setSelected] = useState({
+    id: ''
+  })
 
   // Logger
   console.log('selected student:', selected)
@@ -35,32 +39,26 @@ const ViewAll = () => {
   }
 
   function DataVisual (props) {
-    const {firstName, lastName, email, imageURL, gpa, campus} = props.data
+    const {id, firstName, lastName, email, imageURL, gpa, campus} = props.data
     return (
 
-    <TableRow onClick={e => setSelected(props.data)}>
+    <TableRow onClick={e => {
+        console.log(e)
+        setSelected({
+          ...props.data,
+          selected: true});
+        }}
+        sx={
+          selected.id === id ? ({
+            backgroundColor : 'light gray' }) : ({})
+        }
+        >
       <TableCell>{firstName}</TableCell>
       <TableCell>{lastName}</TableCell>
       <TableCell align='right'>{gpa}</TableCell>
       <TableCell align='right'>{campus.name}</TableCell>
       <TableCell align='right'>{email}</TableCell>
     </TableRow>
-      // <>
-      // {`${firstName} ${lastName} ${email} ${imageURL} ${gpa}`}
-      // </>
-    )
-  }
-
-  function SelectedStudentVisual (props) {
-    const {firstName, lastName, email, imageURL, gpa, campus} = props.data;
-    return (
-      <Box>
-        {firstName}<br></br>
-        {lastName}<br></br>
-        {gpa}<br></br>
-        {campus.name}<br></br>
-        {email}<br></br>
-      </Box>
     )
   }
 
@@ -121,48 +119,8 @@ const ViewAll = () => {
       }}>
 
       {selected ? (
-        <SelectedStudentVisual data={selected} />
-      ): ('No student selected')}
-
-
-      {/* for visual width  */}
-
-        {/* <Box component={Paper} elevation={5} sx={{
-        minHeight: '68vh',
-        // width: '55vw'
-      }}>
-
-        <TableContainer component={Paper}>
-          <Table sx={{minWidth : '100%'}}>
-            <TableHead>
-              <TableRow>
-                <TableCell>First Name</TableCell>
-                <TableCell>Last Name</TableCell>
-                <TableCell align='right'>GPA</TableCell>
-                <TableCell align='right'>Campus</TableCell>
-                <TableCell align='right'>Email</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {_DATA.currentData().map((value, idx) => {
-                return (<DataVisual data={value} key={idx} />)
-              })}
-            </TableBody>
-          </Table>
-        </TableContainer>
-        <Pagination
-        count={count}
-        size='small'
-        page={page}
-        variant='outlined'
-        shape='rounded'
-        onChange={handleChange} />
-      </Box> */}
-
-
-      {/* end */}
-
-
+        selected.id !== '' ? (<StudentCard student={selected} set={setSelected} />) : ('No student selected')
+      ): ('selected null')}
 
       </Box>
     </Grid>

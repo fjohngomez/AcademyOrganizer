@@ -34,7 +34,7 @@ function SiteRoutes () {
           <Route path="/students/:id" element={<SoleStudent />} />
 
           <Route path="/campuses" element={<Campuses />} />
-          <Route path="/students" element={<Students />} />
+          <Route path="/students" element={<ViewAll />} />
           <Route path="/login" element={<AuthenForm />} />
           <Route path="/signup" element={<AuthenForm />} />
           <Route path="*" element={<Navigate replace to="/login" />} />
